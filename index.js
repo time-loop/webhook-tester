@@ -9,7 +9,6 @@ app.post('/webhook', (req, resp) => {
   console.log('incoming webhook');
   console.log({ body: req.body, headers: req.headers }, '\n', '\n');
 
-  console.log("THIS IS FOR JOSH TO LOOK AT MANG." + req.body);
   resp.status(200).end();
 });
 

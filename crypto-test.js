@@ -1,10 +1,10 @@
 const crypto = require('crypto');
-const key = 'KXGBE8CB3Y6M07FCRQ2TECLYG320PTXAM7JPENDKKQCJ0WPEJB8OHOSPQ9I16DJY';
-const body = '{"webhook_id":"ce58d16a-ea6a-4cfa-b0ac-41c7a5d08d2a","event":"taskUpdated","task_id":"et6ued"}';
+const key = '9MWJWQWTAPGFX1FABCUI0EMLHHOCJAR093AB6T9HZOEHQALNZCW7OMGWR7Q8E6JC';
+const body = '{"event":"taskUpdated","history_items":[{"id":"1862511927020777411","type":1,"date":"1586810501420","field":"status","parent_id":"53400032","data":{"status_type":"closed"},"source":null,"user":{"id":300528,"username":"Josh Kim","email":"jk@clickup.com","color":"#08c7e0","initials":"JK","profilePicture":"https://dev-attachments-public.clickup.com/profilePictures/300528_HHk.jpg"},"before":{"status":"to do","color":"#d3d3d3","orderindex":0,"type":"open"},"after":{"status":"complete","color":"#6bc950","orderindex":1,"type":"closed"}}],"task_id":"h5k8z7","webhook_id":"aa7a404c-1162-4114-8383-f0926ae6c644"}';
 const hash = crypto.createHmac('sha256', key).update(body);
 const signature = hash.digest('hex');
 
-const ClickUp_Signature = "5bbf9d3be70abb221b0652658827e7a3afd608916fb79b6edfb06121f9dbdb59";
+const ClickUp_Signature = "5ee2f861b3aa888bfe906ce790670ee229b9d6ae877b47473a47dff9df903c64";
 
 console.log("Josh'ss signature: " + signature);
 console.log("ClickUp signature: " + ClickUp_Signature);

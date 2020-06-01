@@ -14,6 +14,21 @@ app.post('/webhook', (req, resp) => {
   resp.status(200).end();
 });
 
-app.listen(3000, () => console.log('listening to port 3000'));
+<<<<<<< HEAD
+app.get('/oauthtest', (req, resp) => {
+  console.log("Incoming oauth key!");
+  console.log({ body: req.body, headers: req.headers }, '\n', '\n');
 
-// mehh
+  resp.status(200).end();
+});
+
+app.post('/random', (req, resp) => {
+  
+  console.log({ body: req.body, headers: req.headers }, '\n', '\n');
+
+  resp.status(200).end();
+});
+
+app.listen(3000, () => console.log('listening'));
+
+//ffdfdsdfsdf

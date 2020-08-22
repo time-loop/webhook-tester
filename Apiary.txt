@@ -4096,8 +4096,6 @@ The maximum number of tasks returned in this response is `100`. When you are pag
             }
 
 ### Get Filtered Team Tasks [GET /team/{team_id}/task{?page,order_by,reverse,subtasks,space_ids%5B%5D,project_ids%5B%5D,list_ids%5B%5D,statuses%5B%5D,include_closed,assignees%5B%5D,tags%5B%5D,due_date_gt,due_date_lt,date_created_gt,date_created_lt,date_updated_gt,date_updated_lt,custom_fields%5B%5D}]
-#### Accepted Values for `operator` for `custom_fields[]` parameter
-- `=`, `<`, `<=`, `>`, `>=`, `!=`, `IS NULL` ,`IS NOT NULL` ,`RANGE`, `ANY`, `ALL`, `NOT ANY`, `NOT ALL`
 + Parameters
     + team_id: 123 (string) - Team ID of tasks
     + page (integer) - Page to fetch
@@ -4118,7 +4116,10 @@ The maximum number of tasks returned in this response is `100`. When you are pag
     + date_created_lt (integer, optional) - Filter date created less than posix time
     + date_updated_gt (integer, optional) - Filter date updated greater than posix time
     + date_updated_lt (integer, optional) - Filter date updated less than posix time
-    + `custom_fields%5B%5D` (object[], optional) - Filter by custom fields. Must be a stringified JSON array of objects that must include fields `field_id`, `value`, `operator`. See the **Custom Fields** reference on the lefthand side for more details on `field_id` and `value`. 
+    + `custom_fields%5B%5D` (object[], optional) - Filter by custom fields. Must be a stringified JSON array of objects that must include fields `field_id`, `value`, `operator`. 
+        + See the **Custom Fields** reference page on the lefthand side for additional information on valid input for fields `value` and `field_id` for different _types_ of custom fields
+        + Accepted Values for `operator`: `=`, `<`, `<=`, `>`, `>=`, `!=`, `IS NULL` ,`IS NOT NULL` ,`RANGE`, `ANY`, `ALL`, `NOT ANY`, `NOT ALL`
+        + Example: `?custom_fields[]={"field_id":"de761538-8ae0-42e8-91d9-f1a0cdfbd8b5","operator":">","value":2}`
 + Request
 By default this does not include closed tasks. To page tasks, pass the page number you wish to fetch.
 

@@ -135,10 +135,13 @@ axios({
 
 _Note_ - Make sure that your file is named `attachment` otherwise the API will not recognize the file. 
 
-### Post Task Attachment [POST /task/{task_id}/attachment]
+### Post Task Attachment [POST /task/{task_id}/attachment{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
+    + custom_task_ids (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
     + Headers
@@ -231,10 +234,13 @@ Get the authorized teams for this token
 
 ## Checklists [/checklist]
 
-### Create Checklist [POST /task/{task_id}/checklist]
+### Create Checklist [POST /task/{task_id}/checklist/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hz (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
     + Headers
@@ -424,10 +430,13 @@ Get the authorized teams for this token
 
 ## Comments [/comment]
 
-### Post Task Comment [POST /task/{task_id}/comment]
+### Post Task Comment [POST /task/{task_id}/comment{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hz (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
 If `notify_all` is true, creation notifications will be sent to everyone including the creator of the comment.
@@ -510,10 +519,13 @@ If `notify_all` is true, creation notifications will be sent to everyone includi
                 "date": 1568037341249
             }
 
-### Get Task Comments [GET /task/{task_id}/comment]
+### Get Task Comments [GET /task/{task_id}/comment/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hz (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
     + Headers
@@ -1173,11 +1185,14 @@ The value must be an object with the following format. The UUID's for each label
                 ]
             }
 
-### Set Custom Field Value [POST /task/{task_id}/field/{field_id}]
+### Set Custom Field Value [POST /task/{task_id}/field/{field_id}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
     + field_id: b955c4dc-b8a8-48d8-a0c6-b4200788a683 (uuid)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 The accessible fields can be found on the task object from the get task route. This is where you can retrieve the `field_id`.
@@ -1196,11 +1211,14 @@ The accessible fields can be found on the task object from the get task route. T
             
             {}
 
-### Remove Custom Field Value [DELETE /task/{task_id}/field/{field_id}]
+### Remove Custom Field Value [DELETE /task/{task_id}/field/{field_id}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
     + field_id: b955c4dc-b8a8-48d8-a0c6-b4200788a683 (uuid)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
 The accessible fields can be found on the task object from the get task route. This is where you can retrieve the `field_id`.
@@ -1214,10 +1232,13 @@ The accessible fields can be found on the task object from the get task route. T
 
 ## Dependencies [/dependency]
 
-### Add Dependency [POST /task/{task_id}/dependency]
+### Add Dependency [POST /task/{task_id}/dependency/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 To create a waiting on dependency, pass the property `depends_on` in the body. To create a blocking dependency, pass the property `dependency_of`. Both can not be passed in the same request.
@@ -1235,12 +1256,15 @@ To create a waiting on dependency, pass the property `depends_on` in the body. T
             
             {}
 
-### Delete Dependency [DELETE /task/{task_id}/dependency{?depends_on,dependency_of}]
+### Delete Dependency [DELETE /task/{task_id}/dependency{?depends_on,dependency_of,custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
     + depends_on: 9hz (string)
     + dependency_of: 9hz (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 One and only one of `depends_on` or `dependency_of` must be passed in the query params.
@@ -1252,11 +1276,14 @@ One and only one of `depends_on` or `dependency_of` must be passed in the query 
             
             {}
 
-### Add Task Link [POST /task/{task_id}/link/{links_to}]
+### Add Task Link [POST /task/{task_id}/link/{links_to}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
     + links_to: 9hz (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
     + Headers
@@ -1315,11 +1342,14 @@ One and only one of `depends_on` or `dependency_of` must be passed in the query 
                 }
             }
 
-### Delete Task Link [DELETE /task/{task_id}/link/{links_to}]
+### Delete Task Link [DELETE /task/{task_id}/link/{links_to}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
     + links_to: 9hz (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
     + Headers
@@ -2104,11 +2134,14 @@ All properties available in the create key result route may also be used along w
                 }
             }
 
-### Add Guest To Task [POST /task/{task_id}/guest/{guest_id}]
+### Add Guest To Task [POST /task/{task_id}/guest/{guest_id}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: c04 (string)
     + guest_id: 403 (number)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 `permisson_level` can be `read`, `comment`, `edit`, or `create`
@@ -2213,11 +2246,14 @@ All properties available in the create key result route may also be used along w
                 }
             }
 
-### Remove Guest From Task [DELETE /task/{task_id}/guest/{guest_id}]
+### Remove Guest From Task [DELETE /task/{task_id}/guest/{guest_id}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: c04 (string)
     + guest_id: 403 (number)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
     + Headers
@@ -3713,11 +3749,14 @@ Returns all resources you have access to where you don't have access to its pare
             {
             }
             
-### Add Tag To Task [POST /task/{task_id}/tag/{tag_name}]
+### Add Tag To Task [POST /task/{task_id}/tag/{tag_name}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: abc (string)
     + tag_name: name (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
     + Headers
@@ -3730,11 +3769,14 @@ Returns all resources you have access to where you don't have access to its pare
             {
             }
             
-### Remove Tag From Task [DELETE /task/{task_id}/tag/{tag_name}]
+### Remove Tag From Task [DELETE /task/{task_id}/tag/{tag_name}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: abc (string)
     + tag_name: name (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
     + Headers
@@ -3748,10 +3790,13 @@ Returns all resources you have access to where you don't have access to its pare
 
 ## Tasks [/tasks]
 
-### Create Task [POST /list/{list_id}/task]
+### Create Task [POST /list/{list_id}/task/{?custom_task_ids,team_id}]
 
 + Parameters
     + list_id: 123 (number)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 `assignees` is an array of the assignees' userids to be added to this task. 
@@ -3840,10 +3885,13 @@ The `links_to` accepts a task ID to create a linked dependency on the new task.
             "url": "https://app.clickup.com/t/9hx"
         }
 
-### Update Task [PUT /task/{task_id}]
+### Update Task [PUT /task/{task_id}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hx (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
 Only pass properties you want to update. It is unnesseary to pass the entire task object. `assignees` is an array of the assignees' userids to be added to this task.
@@ -3914,10 +3962,13 @@ Time estimate is in milliseconds.
                 "url": "https://app.clickup.com/t/9hx"
             }
 
-### Delete Task [DELETE /task/{task_id}]
+### Delete Task [DELETE /task/{task_id}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9xh (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
     + Headers
@@ -3929,7 +3980,7 @@ Time estimate is in milliseconds.
             
             {}
 
-### Get Tasks [GET /list/{list_id}/task{?archived,page,order_by,reverse,subtasks,space_ids%5B%5D,project_ids%5B%5D,statuses%5B%5D,include_closed,assignees%5B%5D,tags%5B%5D,due_date_gt,due_date_lt,date_created_gt,date_created_lt,date_updated_gt,date_updated_lt,custom_fields}]
+### Get Tasks [GET /list/{list_id}/task{?archived,page,order_by,reverse,subtasks,space_ids%5B%5D,project_ids%5B%5D,statuses%5B%5D,include_closed,assignees%5B%5D,tags%5B%5D,due_date_gt,due_date_lt,date_created_gt,date_created_lt,date_updated_gt,date_updated_lt,custom_fields%5B%5D,custom_task_ids,team_id}]
 
 + Parameters
     + list_id: 123 (number)
@@ -3950,8 +4001,13 @@ Time estimate is in milliseconds.
     + date_created_lt (integer, optional) - Filter date created less than posix time
     + date_updated_gt (integer, optional) - Filter date updated greater than posix time
     + date_updated_lt (integer, optional) - Filter date updated less than posix time
-    + custom_fields (object[], optional) - Filter by custom fields. Must be a stringified JSON array of objects. See the custom fields section for more details.
-    
+    + `custom_fields%5B%5D` (object[], optional) - Filter by custom fields. Must be a stringified JSON array of objects that must include fields `field_id`, `value`, `operator`. 
+        + See the **Custom Fields** reference page on the lefthand side for additional information on valid input for fields `value` and `field_id` for different _types_ of custom fields
+        + Accepted Values for `operator`: `=`, `<`, `<=`, `>`, `>=`, `!=`, `IS NULL` ,`IS NOT NULL` ,`RANGE`, `ANY`, `ALL`, `NOT ANY`, `NOT ALL`
+        + Example: `?custom_fields[]={"field_id":"de761538-8ae0-42e8-91d9-f1a0cdfbd8b5","operator":">","value":2}`
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 + Request
 The maximum number of tasks returned in this response is `100`. When you are paging this request, you should check list limit against the length of each response to determine if you are on the last page. 
     + Headers
@@ -4042,10 +4098,13 @@ The maximum number of tasks returned in this response is `100`. When you are pag
                 }
             ]
 
-### Get Task [GET /task/{task_id}]
+### Get Task [GET /task/{task_id}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hz (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
     + Headers
@@ -4095,11 +4154,9 @@ The maximum number of tasks returned in this response is `100`. When you are pag
                 "url": "https://app.clickup.com/t/9hx"
             }
 
-### Get Filtered Team Tasks [GET /team/{team_id}/task{?page,order_by,reverse,subtasks,space_ids%5B%5D,project_ids%5B%5D,list_ids%5B%5D,statuses%5B%5D,include_closed,assignees%5B%5D,tags%5B%5D,due_date_gt,due_date_lt,date_created_gt,date_created_lt,date_updated_gt,date_updated_lt,custom_fields%5B%5D}]
-#### Accepted Values for `operator` for `custom_fields[]` parameter
-- `=`, `<`, `<=`, `>`, `>=`, `!=`, `IS NULL` ,`IS NOT NULL` ,`RANGE`, `ANY`, `ALL`, `NOT ANY`, `NOT ALL`
+### Get Filtered Team Tasks [GET /team/{team_Id}/task{?page,order_by,reverse,subtasks,space_ids%5B%5D,project_ids%5B%5D,list_ids%5B%5D,statuses%5B%5D,include_closed,assignees%5B%5D,tags%5B%5D,due_date_gt,due_date_lt,date_created_gt,date_created_lt,date_updated_gt,date_updated_lt,custom_fields%5B%5D,custom_task_ids,team_id}]
 + Parameters
-    + team_id: 123 (string) - Team ID of tasks
+    + team_Id: 123 (string) - Team ID of tasks
     + page (integer) - Page to fetch
     + order_by (string, optional) - Order by field, defaults to created
          Options: id, created, updated, due_date
@@ -4118,7 +4175,14 @@ The maximum number of tasks returned in this response is `100`. When you are pag
     + date_created_lt (integer, optional) - Filter date created less than posix time
     + date_updated_gt (integer, optional) - Filter date updated greater than posix time
     + date_updated_lt (integer, optional) - Filter date updated less than posix time
-    + `custom_fields%5B%5D` (object[], optional) - Filter by custom fields. Must be a stringified JSON array of objects that must include fields `field_id`, `value`, `operator`. See the **Custom Fields** reference on the lefthand side for more details on `field_id` and `value`. 
+    + `custom_fields%5B%5D` (object[], optional) - Filter by custom fields. Must be a stringified JSON array of objects that must include fields `field_id`, `value`, `operator`. 
+        + See the **Custom Fields** reference page on the lefthand side for additional information on valid input for fields `value` and `field_id` for different _types_ of custom fields
+        + Accepted Values for `operator`: `=`, `<`, `<=`, `>`, `>=`, `!=`, `IS NULL` ,`IS NOT NULL` ,`RANGE`, `ANY`, `ALL`, `NOT ANY`, `NOT ALL`
+        + Example: `?custom_fields[]={"field_id":"de761538-8ae0-42e8-91d9-f1a0cdfbd8b5","operator":">","value":2}`
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
+        
 + Request
 By default this does not include closed tasks. To page tasks, pass the page number you wish to fetch.
 
@@ -4279,10 +4343,13 @@ To page task templates, pass the page number you wish to fetch.
 ## Time Tracking Legacy [/task/{task_id}/time]
 **_Note:_ This is our legacy API for time tracking. Please use the new Time tracking API. You won't be able to update timer entries that uses our Time Tracking 2.0 features that uses labels, descriptions, and making time entries billable.**
 
-### Track time [POST /task/{task_id}/time]
+### Track time [POST /task/{task_id}/time/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 Include the total time or the start and end. The time is in milliseconds and the start and end are posix dates.
@@ -4305,10 +4372,13 @@ Include the total time or the start and end. The time is in milliseconds and the
                 "id": "123",
             }
             
-### Get tracked time [GET /task/{task_id}/time]
+### Get tracked time [GET /task/{task_id}/time/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 Get time tracked for a task.
@@ -4345,11 +4415,14 @@ Get time tracked for a task.
                 ]
             }
             
-### Edit time tracked [PUT /task/{task_id}/time/{interval_id}]
+### Edit time tracked [PUT /task/{task_id}/time/{interval_id}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
     + interval_id: 123 (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 Edit the start, end, or total time of a time tracked entry.
@@ -4371,11 +4444,14 @@ Edit the start, end, or total time of a time tracked entry.
             {
             }
 
-### Delete time tracked [DELETE /task/{task_id}/time/{interval_id}]
+### Delete time tracked [DELETE /task/{task_id}/time/{interval_id}/{?custom_task_ids,team_id}]
 
 + Parameters
     + task_id: 9hv (string)
     + interval_id: 123 (string)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 Delete a time tracked entry
@@ -4391,14 +4467,17 @@ Delete a time tracked entry
 ## Time Tracking 2.0 [/team/{team_id}/time_entries]
 **_Note:_** A time entry that has a negative duration means that timer is currently ongoing for that user.
 
-### Get time entries within a date range [GET /team/{team_id}/time_entries{?start_date,end_date,assignee}]
+### Get time entries within a date range [GET /team/{team_Id}/time_entries{?start_date,end_date,assignee,custom_task_ids,team_id}]
 
 + Parameters
-    + team_id: 512 (number)
+    + team_Id: 512 (number)
     + start_date (number, optional) - Posix Time in Milliseconds
     + end_date (number, optional) - Posix Time in Milliseconds
     + assignee (number, optional) - User ids to filter by separated by commas. 
         + **Note**: Only Workspace Owners/Admins have access to do this.
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 **Note:** Not passing in any optional parameters will result in all time entries for the given user within the past 30 days.
@@ -4436,11 +4515,14 @@ Delete a time tracked entry
             ]
         }
 
-### Get singular time entry [GET /team/{team_id}/time_entries/{timer_id}]
+### Get singular time entry [GET /team/{team_Id}/time_entries/{timer_id}/{?custom_task_ids,team_id}]
 
 + Parameters
-    + team_id: 512 (number)
+    + team_Id: 512 (number)
     + timer_id: 1963465985517105840
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 
@@ -4477,10 +4559,13 @@ Delete a time tracked entry
         }
         
         
-### Get running time entry [GET /team/{team_id}/time_entries/current]
+### Get running time entry [GET /team/{team_Id}/time_entries/current/{?custom_task_ids,team_id}]
 
 + Parameters
-    + team_id: 512 (number)
+    + team_Id: 512 (number)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
 
 + Request
 
@@ -4522,10 +4607,13 @@ Delete a time tracked entry
             }
         }
 
-### Create a time entry [POST /team/{team_id}/time_entries]
+### Create a time entry [POST /team/{team_Id}/time_entries/{?custom_task_ids,team_id}]
 
 + Parameters
-    + team_id: 512 (number)
+    + team_Id: 512 (number)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
     + Headers
@@ -4669,11 +4757,14 @@ Delete a time tracked entry
     
             {}
 
-### Start a time Entry [POST /team/{team_id}/time_entries/start/{timer_id}]
+### Start a time Entry [POST /team/{team_Id}/time_entries/start/{timer_id}/{?custom_task_ids,team_id}]
 
 + Parameters
-    + team_id: 512 (number)
+    + team_Id: 512 (number)
     + timer_id: 2004673344540003570 (number)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
     + Headers
@@ -4794,11 +4885,14 @@ Delete a time tracked entry
             }
 
 
-### Update a time Entry [PUT /team/{team_id}/time_entries/{timer_id}]
+### Update a time Entry [PUT /team/{team_Id}/time_entries/{timer_id}/{?custom_task_ids,team_id}]
 
 + Parameters
-    + team_id: 512 (number)
+    + team_Id: 512 (number)
     + timer_id: 2004673344540003570 (number)
+    + `custom_task_ids` (string, optional) - If you want to reference a task by it's custom task id, this value must be `true`
+    + `team_id` (number, optional) - Only used when the parameter is set to `custom_task_ids=true`
+        + Example: `custom_task_ids=true&team_id=123`
     
 + Request
 Accessible tag actions are `["replace", "add", "remove"]`

@@ -1,4 +1,5 @@
-//blfdah blha blah dfads
+//ddasdsadasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
+//:xasdasd
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -14,7 +15,6 @@ app.post('/webhook', (req, resp) => {
   resp.status(200).end();
 });
 
-<<<<<<< HEAD
 app.get('/oauthtest', (req, resp) => {
   console.log("Incoming oauth key!");
   console.log({ body: req.body, headers: req.headers }, '\n', '\n');
@@ -31,4 +31,4 @@ app.post('/random', (req, resp) => {
 
 app.listen(3000, () => console.log('listening'));
 
-//ffdfdsdfsdf
+asdf

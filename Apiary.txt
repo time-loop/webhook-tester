@@ -153,7 +153,7 @@ _Note_ - Make sure that your file is named `attachment` otherwise the API will n
 
             attachment: raw_image_file (file)
             filename: example.png (string)
-
+a
 + Response 200 (application/json)
 
             {
